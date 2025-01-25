@@ -19,38 +19,41 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-    title: 'Protein Price Calculator - Compare and Save',
-    description: 'Easily calculate and compare the cost of protein products per gram. Add your products, adjust serving sizes, and find the best value.',
-    keywords: 'Protein Price Calculator, protein comparison, cost per gram, supplement calculator, protein supplements, price comparison tool',
+    title: 'Protein Compare - Compare Protein Prices Easily',
+    description:
+        'Easily compare the cost of protein products per gram. Add products, adjust serving sizes, and find the best value for your money with Protein Compare.',
+    keywords:
+        'Protein Compare, protein cost calculator, compare protein prices, protein supplements, cost per gram, supplement comparison tool',
     openGraph: {
-        title: 'Protein Price Calculator - Compare and Save',
-        description: 'Discover the best value protein supplements by calculating cost per gram. Optimize your purchases with our easy-to-use tool.',
-        url: 'https://yourwebsite.com',
-        siteName: 'Protein Price Calculator',
+        title: 'Protein Compare - Compare Protein Prices Easily',
+        description:
+            'Discover the best protein deals by comparing prices per gram. Simplify your protein shopping with Protein Compare.',
+        url: 'https://proteincompare.com',
+        siteName: 'Protein Compare',
         images: [
             {
-                url: 'https://yourwebsite.com/images/og-image.png',
+                url: 'https://proteincompare.com/images/og-image.png',
                 width: 1200,
                 height: 630,
-                alt: 'Protein Price Calculator',
-            },
+                alt: 'Protein Compare'
+            }
         ],
         locale: 'en_US',
-        type: 'website',
+        type: 'website'
     },
     twitter: {
         card: 'summary_large_image',
-        site: '@yourtwitterhandle',
-        title: 'Protein Price Calculator - Compare and Save',
-        description: 'Discover the best value protein supplements by calculating cost per gram. Optimize your purchases with our easy-to-use tool.',
+        site: '@proteincompare',
+        title: 'Protein Compare - Compare Protein Prices Easily',
+        description:
+            'Find the best value protein supplements by comparing cost per gram. Start saving today with Protein Compare!'
     },
     viewport: 'width=device-width, initial-scale=1',
     robots: {
         index: true,
-        follow: true,
-    },
+        follow: true
+    }
 };
-
 
 const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
     return (

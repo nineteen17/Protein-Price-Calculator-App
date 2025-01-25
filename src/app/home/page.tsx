@@ -10,7 +10,10 @@ export const HomePage = () => {
 
     return (
         <div className='container mx-auto max-w-4xl px-4 py-10'>
-            <h1 className='mb-8 text-center text-3xl font-bold text-gray-800'>Protein Price Calculator</h1>
+            <h1 className='mb-2 text-center text-3xl font-bold text-gray-800'>Protein Compare</h1>
+            <p className='mb-8 text-center text-m text-gray-600'>
+                Calculate and compare the cost of protein products per gram to find the best value.
+            </p>
             <Tabs defaultValue='add' className='w-full'>
                 <TabsList className='mb-6 grid w-full grid-cols-2'>
                     <TabsTrigger value='add'>Add Product</TabsTrigger>

@@ -5,14 +5,12 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Trash2, RefreshCw, ChevronDown, ChevronUp } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import { Separator } from '@/components/ui/separator';
 
 export const PriceTable = () => {
   const { products, updateProtein, deleteProduct } = useProductStore();
   const [proteinGrams, setProteinGrams] = useState(1);
   const [expandedRowIndex, setExpandedRowIndex] = useState<number | null>(null);
-  const router = useRouter();
 
   const handleUpdateProtein = () => {
     updateProtein(proteinGrams);
@@ -20,9 +18,6 @@ export const PriceTable = () => {
 
   const handleDeleteItem = (index: number) => {
     deleteProduct(index);
-    if (products.length === 1) {
-      router.push('/');
-    }
   };
 
   const toggleRowExpansion = (index: number) => {
@@ -72,7 +67,11 @@ export const PriceTable = () => {
             <tbody>
               {products.map((product, index) => (
                 <React.Fragment key={index}>
-                  <tr className="border-b transition-colors hover:bg-gray-50">
+                  <tr
+                    className={`border-b transition-colors hover:bg-gray-50 ${
+                      expandedRowIndex === index ? 'bg-gray-50' : ''
+                    }`}
+                  >
                     <td className="px-4 py-3 font-medium">{product.name}</td>
                     <td className="px-4 py-3">
                       ${product.pricePerGram}
@@ -82,13 +81,13 @@ export const PriceTable = () => {
                     </td>
                     <td className="flex items-center justify-center px-4 py-3 text-center">
                       {expandedRowIndex !== index ? (
-                        <ChevronDown 
-                          onClick={() => toggleRowExpansion(index)} 
+                        <ChevronDown
+                          onClick={() => toggleRowExpansion(index)}
                           className="mr-2 size-5 cursor-pointer text-gray-500 hover:text-gray-700"
                         />
                       ) : (
-                        <ChevronUp 
-                          onClick={() => toggleRowExpansion(index)} 
+                        <ChevronUp
+                          onClick={() => toggleRowExpansion(index)}
                           className="mr-2 size-5 cursor-pointer text-gray-500 hover:text-gray-700"
                         />
                       )}
@@ -104,8 +103,8 @@ export const PriceTable = () => {
                   </tr>
                   {expandedRowIndex === index && (
                     <tr>
-                      <td colSpan={3} className="bg-gray-50 px-4 py-3">
-                        <div className="grid grid-cols-2 gap-2 text-gray-700">
+                      <td colSpan={3} className="bg-blue-50 px-4 py-3">
+                        <div className="grid grid-cols-2 gap-2 text-gray-600">
                           <div>
                             <strong>Weight:</strong> {product.weight}g
                           </div>
