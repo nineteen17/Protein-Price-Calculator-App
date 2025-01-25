@@ -20,7 +20,7 @@ export const InputForm = () => {
         weight: '',
         servings: '',
         proteinPerServing: '',
-        currency: ''
+        currency: 'NZD'
     });
 
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -68,7 +68,7 @@ export const InputForm = () => {
             weight: '',
             servings: '',
             proteinPerServing: '',
-            currency: ''
+            currency: 'NZD'
         });
 
         // Auto-close toast after 3 seconds
