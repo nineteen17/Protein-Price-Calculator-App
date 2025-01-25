@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 interface Product {
     name: string;
@@ -17,37 +18,40 @@ interface ProductStore {
     deleteProduct: (index: number) => void;
 }
 
-export const useProductStore = create<ProductStore>((set) => {
-    const saveToLocalStorage = (products: Product[]) => {
-        localStorage.setItem('products', JSON.stringify(products));
-    };
+export const useProductStore = create<ProductStore>()(
+    persist(
+        (set) => ({
+            products: [],
+            addProduct: (product) => {
+                set((state) => ({
+                    products: [...state.products, product],
+                }));
+            },
+            updateProtein: (grams) => {
+                set((state) => ({
+                    products: state.products.map((product) => {
+                        const totalProteinWeight = product.servings * product.proteinPerServing;
+                        const pricePerGram = product.price / totalProteinWeight;
 
-    return {
-        products: JSON.parse(localStorage.getItem('products') || '[]'),
-        addProduct: (product) =>
-            set((state) => {
-                const updatedProducts = [...state.products, product];
-                saveToLocalStorage(updatedProducts);
-                return { products: updatedProducts };
+                        return {
+                            ...product,
+                            pricePerGram: (pricePerGram * grams).toFixed(2),
+                        };
+                    }),
+                }));
+            },
+            deleteProduct: (index) => {
+                set((state) => ({
+                    products: state.products.filter((_, i) => i !== index),
+                }));
+            },
+        }),
+        {
+            name: 'product-storage',
+            storage: createJSONStorage(() => localStorage),
+            partialize: (state) => ({
+                products: state.products,
             }),
-        updateProtein: (grams) =>
-            set((state) => {
-                const updatedProducts = state.products.map((product) => {
-                    const totalProteinWeight = product.servings * product.proteinPerServing;
-                    const pricePerGram = product.price / totalProteinWeight;
-                    return {
-                        ...product,
-                        pricePerGram: (pricePerGram * grams).toFixed(2),
-                    };
-                });
-                saveToLocalStorage(updatedProducts);
-                return { products: updatedProducts };
-            }),
-        deleteProduct: (index) =>
-            set((state) => {
-                const updatedProducts = state.products.filter((_, i) => i !== index);
-                saveToLocalStorage(updatedProducts);
-                return { products: updatedProducts };
-            }),
-    };
-});
+        }
+    )
+);

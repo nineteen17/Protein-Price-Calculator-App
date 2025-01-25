@@ -37,7 +37,8 @@ export const InputForm = () => {
       newErrors.proteinPerServing = 'Protein per serving must be a positive number';
     
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    
+return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -102,18 +103,18 @@ export const InputForm = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             {inputFields.map(({ name, label, type, placeholder }) => (
               <div key={name}>
-                <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+                <label className="mb-1 block text-sm font-medium text-gray-700">{label}</label>
                 <Input
                   name={name}
                   type={type}
                   value={formData[name as keyof typeof formData]}
                   onChange={handleChange}
                   placeholder={placeholder}
-                  className="w-full rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full rounded-md focus:border-transparent focus:ring-2 focus:ring-blue-500"
                 />
                 {errors[name] && (
-                  <div className="flex items-center text-red-500 text-xs mt-1">
-                    <AlertCircle className="mr-1 h-3 w-3" />
+                  <div className="mt-1 flex items-center text-xs text-red-500">
+                    <AlertCircle className="mr-1 size-3" />
                     {errors[name]}
                   </div>
                 )}
@@ -121,7 +122,7 @@ export const InputForm = () => {
             ))}
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Currency</label>
+              <label className="mb-1 block text-sm font-medium text-gray-700">Currency</label>
               <select
                 name="currency"
                 value={formData.currency}
@@ -138,7 +139,7 @@ export const InputForm = () => {
 
             <Button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white transition-colors duration-300"
+              className="w-full bg-blue-600 text-white transition-colors duration-300 hover:bg-blue-700"
             >
               Add Product
             </Button>

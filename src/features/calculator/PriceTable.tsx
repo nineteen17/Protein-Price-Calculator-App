@@ -37,7 +37,7 @@ export const PriceTable = () => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="flex items-center justify-between mb-6">
+        <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Input
               type="number"
@@ -53,7 +53,7 @@ export const PriceTable = () => {
             variant="outline"
             className="flex items-center space-x-2 border-blue-500 text-blue-600 hover:bg-blue-50"
           >
-            <RefreshCw className="h-4 w-4" />
+            <RefreshCw className="size-4" />
             <span>Update</span>
           </Button>
         </div>
@@ -63,7 +63,7 @@ export const PriceTable = () => {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="text-left bg-gray-100">
+              <tr className="bg-gray-100 text-left">
                 <th className="px-4 py-2">Product</th>
                 <th className="px-4 py-2">Price/Protein</th>
                 <th className="px-4 py-2 text-center">Actions</th>
@@ -72,39 +72,39 @@ export const PriceTable = () => {
             <tbody>
               {products.map((product, index) => (
                 <React.Fragment key={index}>
-                  <tr className="border-b hover:bg-gray-50 transition-colors">
+                  <tr className="border-b transition-colors hover:bg-gray-50">
                     <td className="px-4 py-3 font-medium">{product.name}</td>
                     <td className="px-4 py-3">
                       ${product.pricePerGram}
-                      <span className="text-xs text-gray-500 ml-1">
+                      <span className="ml-1 text-xs text-gray-500">
                         ({product.currency})
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-center flex items-center justify-center">
+                    <td className="flex items-center justify-center px-4 py-3 text-center">
                       {expandedRowIndex !== index ? (
                         <ChevronDown 
                           onClick={() => toggleRowExpansion(index)} 
-                          className="cursor-pointer text-gray-500 hover:text-gray-700 w-5 h-5 mr-2"
+                          className="mr-2 size-5 cursor-pointer text-gray-500 hover:text-gray-700"
                         />
                       ) : (
                         <ChevronUp 
                           onClick={() => toggleRowExpansion(index)} 
-                          className="cursor-pointer text-gray-500 hover:text-gray-700 w-5 h-5 mr-2"
+                          className="mr-2 size-5 cursor-pointer text-gray-500 hover:text-gray-700"
                         />
                       )}
                       <Button
                         onClick={() => handleDeleteItem(index)}
                         variant="destructive"
                         size="icon"
-                        className="h-8 w-8"
+                        className="size-8"
                       >
-                        <Trash2 className="h-4 w-4" />
+                        <Trash2 className="size-4" />
                       </Button>
                     </td>
                   </tr>
                   {expandedRowIndex === index && (
                     <tr>
-                      <td colSpan={3} className="px-4 py-3 bg-gray-50">
+                      <td colSpan={3} className="bg-gray-50 px-4 py-3">
                         <div className="grid grid-cols-2 gap-2 text-gray-700">
                           <div>
                             <strong>Weight:</strong> {product.weight}g
@@ -129,7 +129,7 @@ export const PriceTable = () => {
         </div>
 
         {products.length === 0 && (
-          <p className="text-center text-gray-500 mt-4">No products added. Use the form to add products.</p>
+          <p className="mt-4 text-center text-gray-500">No products added. Use the form to add products.</p>
         )}
       </CardContent>
     </Card>
