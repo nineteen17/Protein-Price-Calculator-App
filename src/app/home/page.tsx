@@ -1,33 +1,33 @@
-"use client";
+'use client';
 
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { InputForm } from '@/features/calculator/InputForm';
 import { PriceTable } from '@/features/calculator/PriceTable';
 import { useProductStore } from '@/lib/store';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export const HomePage = () => {
-  const { products } = useProductStore();
+    const { products } = useProductStore();
 
-  return (
-    <div className="container mx-auto px-4 py-10 max-w-4xl">
-      <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">Protein Price Calculator</h1>
-      
-      <Tabs defaultValue="add" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 mb-6">
-          <TabsTrigger value="add">Add Product</TabsTrigger>
-          <TabsTrigger value="compare" disabled={products.length === 0}>
-            Compare Products
-          </TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="add">
-          <InputForm />
-        </TabsContent>
-        
-        <TabsContent value="compare">
-          {products.length > 0 && <PriceTable />}
-        </TabsContent>
-      </Tabs>
-    </div>
-  );
+    return (
+        <div className='container mx-auto max-w-4xl px-4 py-10'>
+            <h1 className='mb-8 text-center text-3xl font-bold text-gray-800'>Protein Price Calculator</h1>
+            <Tabs defaultValue='add' className='w-full'>
+                <TabsList className='mb-6 grid w-full grid-cols-2'>
+                    <TabsTrigger value='add'>Add Product</TabsTrigger>
+                    <TabsTrigger
+                        value='compare'
+                        disabled={products.length === 0}
+                        className={products.length === 0 ? 'cursor-not-allowed opacity-50' : ''}>
+                        Compare Products
+                    </TabsTrigger>
+                </TabsList>
+
+                <TabsContent value='add'>
+                    <InputForm />
+                </TabsContent>
+
+                <TabsContent value='compare'>{products.length > 0 && <PriceTable />}</TabsContent>
+            </Tabs>
+        </div>
+    );
 };
