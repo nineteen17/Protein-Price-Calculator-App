@@ -5,6 +5,8 @@ import localFont from 'next/font/local';
 
 import { ThemeProvider } from 'next-themes';
 
+import { Analytics } from '@vercel/analytics/next';
+
 import './globals.css';
 
 const geistSans = localFont({
@@ -62,6 +64,7 @@ const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
         <html suppressHydrationWarning lang='en'>
             <body className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground antialiased`}>
                 {children}
+                <Analytics />
             </body>
         </html>
     );
