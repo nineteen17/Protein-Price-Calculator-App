@@ -62,6 +62,11 @@ const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
         // ? https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
         // ? https://react.dev/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors
         <html suppressHydrationWarning lang='en'>
+            <script
+                async
+                src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4414360736886020'
+                crossOrigin='anonymous'></script>
+            <meta name='google-adsense-account' content='ca-pub-4414360736886020'></meta>
             <body className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground antialiased`}>
                 {children}
                 <Analytics />
